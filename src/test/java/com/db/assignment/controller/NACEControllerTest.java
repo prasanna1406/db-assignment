@@ -63,7 +63,7 @@ public class NACEControllerTest {
     public void fetchByOrderId() {
         Mockito.when(naceService.getByOrderId(123)).thenReturn(NomenclatureBean.builder().orderId(123).build());
 
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/nace").param("orderId", String.valueOf(123)))
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/nace/123"))
                 .andExpect(status().isOk()).andReturn();
 
         NomenclatureBean nomenclatureBean = new ObjectMapper().readValue(mvcResult.getResponse().getContentAsString(), NomenclatureBean.class);

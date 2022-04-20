@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 @RestController
@@ -40,8 +41,8 @@ public class NACEController {
         return ResponseEntity.status(HttpStatus.OK).body(ResponseMessage.builder().message("file uploaded successfully").build());
     }
 
-    @GetMapping
-    public ResponseEntity<NomenclatureBean> fetchByOrderId(@RequestParam("orderId") long orderId) {
+    @GetMapping("/{orderId}")
+    public ResponseEntity<NomenclatureBean> fetchByOrderId(@PathVariable("orderId") long orderId) {
         NomenclatureBean nomenclatureBean = naceService.getByOrderId(orderId);
         return ResponseEntity.ok(nomenclatureBean);
     }

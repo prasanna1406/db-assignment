@@ -57,7 +57,7 @@ public class NACEControllerIntegrationTest {
     @Order(2)
     public void fetchDataByOrderId() {
 
-        final ResponseEntity<NomenclatureBean> exchange = testRestTemplate.getForEntity("/nace?orderId=398481", NomenclatureBean.class);
+        final ResponseEntity<NomenclatureBean> exchange = testRestTemplate.getForEntity("/nace/398481", NomenclatureBean.class);
 
         Assert.assertEquals(HttpStatus.OK, exchange.getStatusCode());
 //        Assert.assertEquals("file uploaded successfully", exchange.getBody().getMessage());
