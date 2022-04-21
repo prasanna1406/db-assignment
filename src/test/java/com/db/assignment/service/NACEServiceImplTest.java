@@ -2,6 +2,8 @@ package com.db.assignment.service;
 
 import com.db.assignment.domain.Nomenclature;
 import com.db.assignment.domain.NomenclatureBean;
+import com.db.assignment.domain.ResponseMessage;
+import com.db.assignment.exception.DataNotFoundException;
 import com.db.assignment.mapper.NomenclatureMapper;
 import com.db.assignment.repository.NomenclatureRepository;
 import lombok.SneakyThrows;
@@ -18,6 +20,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Collections;
+import java.util.TreeSet;
 
 @RunWith(MockitoJUnitRunner.class)
 public class NACEServiceImplTest {
@@ -56,5 +59,10 @@ public class NACEServiceImplTest {
         Assert.assertEquals(123, byOrderId.getOrderId());
     }
 
+    @Test(expected = DataNotFoundException.class)
+    public void tetGetByOrderId_throwsDataNotFoundException() {
+        Mockito.when(nomenclatureRepository.findByOrderId(123L)).thenReturn(null);
 
+        naceService.getByOrderId(123);
+    }
 }

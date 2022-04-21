@@ -3,14 +3,12 @@ package integration;
 import com.db.assignment.AssignmentApplication;
 import com.db.assignment.domain.NomenclatureBean;
 import com.db.assignment.domain.ResponseMessage;
-import com.db.assignment.exception.AssignmentException;
 import lombok.SneakyThrows;
 import org.junit.Assert;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -18,7 +16,6 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.*;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
@@ -58,9 +55,7 @@ public class NACEControllerIntegrationTest {
     public void fetchDataByOrderId() {
 
         final ResponseEntity<NomenclatureBean> exchange = testRestTemplate.getForEntity("/nace/398481", NomenclatureBean.class);
-
         Assert.assertEquals(HttpStatus.OK, exchange.getStatusCode());
-//        Assert.assertEquals("file uploaded successfully", exchange.getBody().getMessage());
     }
 
     static Resource createFileResource() throws IOException {
